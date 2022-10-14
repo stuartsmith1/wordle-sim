@@ -14,14 +14,13 @@ keyboard = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
 keyboard_back = keyboard.copy()
 loop = True
 
-while True:
-    with open('valid.csv') as f:
-        reader = csv.reader(f)
-        answer = str(random.choice(list(reader))).split("\'")[1].upper()
-    if answer.lower() in open('valid.csv').read():
-        break
-    else:
-        continue
+with open("valid.txt") as f:
+    valid_list = f.read().split("\n")
+
+with open('answer.txt') as f:
+    answer_list = f.read().split("\n")
+
+answer = str(random.choice(answer_list)).upper()
 
 wlen = len(answer)
 
@@ -47,7 +46,7 @@ def mod(ans, gue):
 
 while loop:
     guess = input().upper()
-    if guess.lower() not in open('valid.csv').read() or len(guess) < wlen:
+    if guess.lower() not in valid_list or len(guess) < wlen:
         print(colors.WRONG + "not valid" + colors.ENDC)
         continue
     if guess == answer:
