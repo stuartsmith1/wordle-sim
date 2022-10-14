@@ -1,18 +1,19 @@
 import csv
 import random
 
+
 class colors:
     CORRECT = '\033[92m'
     WRONGSPOT = '\033[93m'
     WRONG = '\033[91m'
     ENDC = '\033[0m'
 
+
 display = []
 keyboard = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
             "a", "s", "d", "f", "g", "h", "j", "k", "l",
             "z", "x", "c", "v", "b", "n", "m"]
 keyboard_back = keyboard.copy()
-loop = True
 
 with open("valid.txt") as f:
     valid_list = f.read().split("\n")
@@ -23,6 +24,7 @@ with open('answer.txt') as f:
 answer = str(random.choice(answer_list)).upper()
 
 wlen = len(answer)
+
 
 def mod(ans, gue):
     answer = list(ans)
@@ -44,7 +46,8 @@ def mod(ans, gue):
             keyboard[keyboard_back.index(guess[i].lower())] = "-"
     return ' '.join(back)
 
-while loop:
+
+while True:
     guess = input().upper()
     if guess.lower() not in valid_list or len(guess) < wlen:
         print(colors.WRONG + "not valid" + colors.ENDC)
